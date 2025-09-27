@@ -13,7 +13,7 @@ public:
         head = nullptr;
         tail = nullptr;
     };
-    void push_back(int value){
+    void push_back(T value){
         Node<T>* newNode = new Node<T>(value);
         if (tail == nullptr) {
             tail = newNode;
@@ -23,6 +23,7 @@ public:
             tail->next = newNode;
             tail = newNode;
         }
+        std::cout << "ok" << std::endl;
     }
     void print(){
         Node<T> *node = head;
@@ -33,16 +34,16 @@ public:
         std::cout << std::endl;
     }
 
-    void insert_node(int node_val, int pos){
+    void insert_node(T node_val, int pos){
         int i = 0;
         Node<T> *newNode = new Node<T>(node_val);
         if (head == nullptr) {
-            // If the list is empty, insert as the only node
             head = newNode;
             tail = newNode;
+            std::cout << "ok" << std::endl;
             return;
         }
-        Node *dummy = head;
+        Node<T> *dummy = head;
         if (pos == 0){
             newNode->next = dummy;
             head = newNode;
@@ -60,6 +61,7 @@ public:
         dummy->next = newNode;
         newNode->prev = dummy;   
         tail = newNode;
+        std::cout << "ok" << std::endl;
     }
     void erase_back(){
         if (tail == nullptr) return;
@@ -70,6 +72,7 @@ public:
             tail = tail->prev;
             tail->next = nullptr;
         }
+        std::cout << toDelete->val << std::endl;
         delete toDelete;
     }
     void erase_front(){
@@ -80,7 +83,9 @@ public:
         } else {
             head = head->next;
             head->prev = nullptr;
+
         }
+        std::cout << toDelete->val << std::endl;
         delete toDelete;
     }
     void add_front(int node_val){
@@ -92,6 +97,7 @@ public:
             head->prev = newNode;
             head = newNode;
         }
+        std::cout << "ok" << std::endl;
     }
     T front(){
         if (head == nullptr) {
@@ -115,5 +121,6 @@ public:
             node = next;
         }
         head = tail = nullptr;
+        std::cout << "ok" << std::endl;
     }
 };

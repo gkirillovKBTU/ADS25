@@ -1,35 +1,30 @@
 #include <iostream>
-#include <deque>
-#include <stack>
-#include <unordered_set>
-#include <climits>
-#include <string>
-using namespace std;
+#include <vector>
+#include <queue>
 
+
+using namespace std;
 int main() {
-    int n, t; cin >> n;
-    char ch;
-    bool dupl;
-    unordered_set<char> duplicates;
-    deque<char> lookup;
-    for(int i=0; i < n; i++){
-        cin >> t;
-        for(int j=0; j < t; j++){
+    int T;
+    if(!(cin >> T)) return 0;
+    while (T--) {
+        int N;
+        cin >> N;
+        vector<int> cnt(26,0);
+        queue<char> q;
+        bool firstOut = true;
+        for (int i = 0; i < N; ++i) {
+            char ch;
             cin >> ch;
-            dupl = false;
-            while(!lookup.empty() && lookup.back() == ch){
-                // cout << " LOGG " << lookup.back() << " " << ch << endl;
-                lookup.pop_back();
-            }
-            if(duplicates.find(ch) == duplicates.end()){
-                lookup.push_front(ch);
-                duplicates.insert(ch);
-            }
-            cout << (lookup.empty() ? "-1" : string(1, lookup.back())) << " ";
+            cnt[ch - 'a']++;
+            q.push(ch);
+            while (!q.empty() && cnt[q.front() - 'a'] > 1) q.pop();
+            if (!firstOut) cout << ' ';
+            firstOut = false;
+            if (q.empty()) cout << -1;
+            else cout << q.front();
         }
-        cout << endl;
-        duplicates.clear();
-        lookup.clear();
+        cout << '\n';
     }
     return 0;
 }

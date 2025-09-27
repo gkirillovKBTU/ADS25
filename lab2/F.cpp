@@ -51,6 +51,7 @@ public:
         if (pos == 0){
             newNode->next = dummy;
             head = newNode;
+            return;
         }
 
         while((i != pos - 1) && dummy->next != nullptr){

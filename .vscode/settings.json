@@ -63,6 +63,8 @@
         "list": "cpp",
         "unordered_map": "cpp",
         "xhash": "cpp",
-        "climits": "cpp"
+        "climits": "cpp",
+        "functional": "cpp",
+        "unordered_set": "cpp"
     }
 }
